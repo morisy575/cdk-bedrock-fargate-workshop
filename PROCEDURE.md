@@ -1,6 +1,6 @@
 # AWS CDK Hands-on  - Build a RAG Application with Knowledge Bases for Amazon Bedrock 
 
-[Image: image.png]* * *
+![Overview](imgs/overview.png)
 
 ## 1. 事前準備
 
@@ -16,28 +16,24 @@ AWS Cloud9 を簡単に立ち上げられるように AWS SA が提供してい�
 ```
 git clone https://github.com/aws-samples/cloud9-setup-for-prototyping
 ```
-
-1. ディレクトリに移動してください。
+3. ディレクトリに移動してください。
 
 ```
 cd cloud9-setup-for-prototyping
 ```
-
-1. 必要に応じてボリューム容量とインスタンスタイプを変更します。「複数行のテキストの安全な貼り付け」というポップアップが表示されたら、「貼り付け」を選択してください。
+4. 必要に応じてボリューム容量とインスタンスタイプを変更します。「複数行のテキストの安全な貼り付け」というポップアップが表示されたら、「貼り付け」を選択してください。
 
 ```
 cat <<< $(jq  '.name = "cloud9-for-cdk-workshop"'  params.json )  > params.json
 cat <<< $(jq  '.volume_size = 50'  params.json )  > params.json
 cat <<< $(jq  '.instance_type = "m5.large"'  params.json )  > params.json
 ```
-
-1. スクリプトを実行してください。
+5. スクリプトを実行してください。
 
 ```
 ./bin/bootstrap
 ```
-
-1. [Cloud9](https://console.aws.amazon.com/cloud9/home) に移動し、"Open IDE" をクリックします。
+6. [Cloud9](https://console.aws.amazon.com/cloud9/home) に移動し、"Open IDE" をクリックします。
 
 ### 1.2. Amazon Bedrock モデルアクセス有効化
 
@@ -116,7 +112,7 @@ pip install -r requirements.txt
 
 ## 3. Amazon VPC 作成
 
-[Image: image.png]
+![Step3](imgs/step3.png)
 ### 3.1. 新しい空のスタックファイルの作成
 
 さてここからは、実際に AWS CDK を使って AWS リソースを作成していきましょう。以下のコマンドを実行してください。
@@ -390,6 +386,7 @@ docker run -p 8080:8080 web_app
 今回は L3 Construct である **ECS Patterns - Application Load Balanced Fargate Services** を用いてクイックにデプロイしていきます。これは、**よくある構成である「ALB + AWS Fargate 構成」をパターンとして簡単にデプロイできるようにした公式の L3 Construct** です。
 https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs_patterns-readme.html
 
+![Step5](imgs/step5.png)
 
 ### 5.1.  ALB + Fargate の CDK コードを記載
 
@@ -512,6 +509,8 @@ cdk deploy
 * * *
 
 ## Step 6. Knowledge Bases for Amazon Bedrock を用いた RAG アプリケーションに変更
+
+![Step6](imgs/step6.png)
 
 ここからは、シンプルな生成AIチャットアプリケーションを、RAG に対応したアプリケーションに変更していきます。
 
@@ -863,7 +862,7 @@ cdk deploy --all
 ### 6.4. Knowledge Bases for Amazon Bedrock  にドキュメントを同期し、動作確認
 
 先ほどのステップで作成された Knowledge Base にドキュメントを追加します。
-サンプルのドキュメントとして、Amazon Bedrock ユーザーガイド（2023年時点）を S3 バケットに追加します。
+サンプルのドキュメントとして、[Amazon Bedrock ユーザーガイド（2023年時点）](docs-data/bedrock-ug.pdf)を S3 バケットに追加します。
 
 Knowledge Base の画面で表示されている S3 パスから、Amazon S3 へアクセスし、そちらにドキュメントをアップロードしてください。
 その後、Knowledge Base の画面に戻り、「同期」を選択してください。
