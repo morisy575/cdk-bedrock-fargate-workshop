@@ -516,7 +516,8 @@ cdk deploy
 
 RAG アプリケーションを構築するにあたって、今回は **Amazon Bedrock が提供しているフルマネージドな RAG 機能である Knowledge Bases for Amazon Bedrock** を利用していきます。
 こちらは、**LLM(Bedrock) + Vector DB (Amazon OpenSearch Serverless、Pinecone 、など) の RAG アプリケーションを容易に構築・利用できる機能**となっています。最近のアップデートでは、サブクエリ分割やチャンキング戦略選択肢の増加など、いわゆる Advanced RAG の実現に使われるアプローチが複数実装されており、簡単に構築できるだけでなく、カスタマイズする高度な利用にも適用しやすくなっています。
-[Image: image.png]また、生成 AI アプリケーションの構築にあたっては、[Generative AI CDK Constructs](https://github.com/awslabs/generative-ai-cdk-constructs/tree/main) の利用が便利です。
+
+また、生成 AI アプリケーションの構築にあたっては、[Generative AI CDK Constructs](https://github.com/awslabs/generative-ai-cdk-constructs/tree/main) の利用が便利です。
 昨年の re:Invent 2023 にて発表された AWS 公式の CDK ライブラリで、生成 AI 関連の実装に特化した L3/L2 Construct が提供されています。今回はこちらを使って実装していきましょう。
 
 ### 6.1. Knowledge Bases 作成用のスタックの作成
