@@ -703,14 +703,15 @@ class KbStack(Stack):
 書き換える際、`doc_bucket` 内の`bucket_name="cdk-bedrock-workshop-<your name>-bucket",` を`<your name> ` の部分をあなたのお名前や ID に書き換えてください。（例：`cdk-bedrock-workshop-morishita-bucket` )
 これは S3 バケット名がグローバルで一意である必要があるためです。
 
+ここから、アプリケーション側に対して、この Knowledge Base を用いて RAG に対応できるように変更を加えていきます。
 このスタックをデプロイすることで、Knowledge Base が作成され、Knowledge Base を一意に示す ID が紐付きます。
 Fargate でホストされるアプリケーションが、この Knowledge Base を用いて RAG の仕組みを実行するには「どの Knowledge Base を使わなければいけないか」=「Knowledge Base  ID が何か」を知る必要があります。
-すなわち、**「`KbStack` 作成完了後払い出された ID を、 Fargate アプリケーション側に伝える仕組み」**を加えてあげる必要があります。
+すなわち、**「`KbStack` 作成完了後払い出された ID を、 Fargate アプリケーション側に伝える仕組み」** を加えてあげる必要があります。
 
 この実装にはいくつかのパターンがありますが、今回は [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/systems-manager-parameter-store.html)というAWSの機能を用います。これはいろいろな Parameterをセキュアに格納しておけるサービスです。
 先ほど追加したコードにおいては、`ssm.StringParameter...` という部分で、Knowledge Base の ID を Parameter Store に登録しています。
 
-続いて、`ecs_stack.py` の末尾に以下を追加してください。
+まず、`ecs_stack.py` の末尾に以下を追加してください。
 
 ```
 fargate_service.task_definition.add_to_task_role_policy(iam.PolicyStatement(
