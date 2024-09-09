@@ -61,7 +61,7 @@ AWS Cloud9 の画面に戻り、ターミナルにて以下の2つのコマン�
 
 ```
 npm update -g cdk
-pip install —upgrade aws-cdk-lib==2.156.0
+pip install aws-cdk-lib==2.156.0
 ```
 
 
