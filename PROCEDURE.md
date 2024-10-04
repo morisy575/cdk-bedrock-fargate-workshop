@@ -700,7 +700,7 @@ class KbStack(Stack):
         )
 ```
 
-書き換える際、`doc_bucket` 内の`bucket_name="cdk-bedrock-workshop-<your name>-bucket",` を`<your name> ` の部分をあなたのお名前や ID に書き換えてください。（例：`cdk-bedrock-workshop-morishita-bucket` )
+書き換える際、`doc_bucket` 内の`bucket_name="cdk-bedrock-workshop-<your name>-bucket",` を`<your name> ` の部分をあなたのお名前や ID に書き換えてください。（例：`cdk-bedrock-workshop-morisy575-bucket` )
 これは S3 バケット名がグローバルで一意である必要があるためです。
 
 ここから、アプリケーション側に対して、この Knowledge Base を用いて RAG に対応できるように変更を加えていきます。
